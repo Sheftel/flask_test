@@ -1,7 +1,7 @@
-from db_handling import get_db_connection
+from db_handling import get_connection
 
 
-conn = get_db_connection()
+conn = get_connection()
 cur = conn.cursor()
 cur.execute("""DROP TABLE IF EXISTS posts;
     CREATE TABLE posts (
