@@ -1,13 +1,8 @@
-import psycopg2 as psycopg2
+from db_handling import get_db_connection
 
-conn = psycopg2.connect(
-    host="localhost",
-    database="postgres",
-    user="postgres",
-    password="mysecretpassword")
 
+conn = get_db_connection()
 cur = conn.cursor()
-
 cur.execute("""DROP TABLE IF EXISTS posts;
     CREATE TABLE posts (
         id SERIAL PRIMARY KEY,
@@ -26,4 +21,4 @@ cur.execute("INSERT INTO posts (title, content) VALUES (%s,%s)",
 
 conn.commit()
 cur.close()
-
+conn.close()
