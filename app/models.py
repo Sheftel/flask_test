@@ -1,10 +1,6 @@
 from datetime import datetime
-
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Table, Column, Integer, String, DateTime
-from sqlalchemy.sql import func
-
-db = SQLAlchemy()
+from sqlalchemy import Column, Integer, String, DateTime
+from .extensions import db
 
 
 class Post(db.Model):
@@ -20,3 +16,11 @@ class Post(db.Model):
 
     def __repr__(self):
         return '<Post %r>' % self.title
+
+
+def init_db():
+    if db.session.query(Post.id).first() is None:
+        db.session.add(Post(title='First Post', content='Content of first post'))
+        db.session.add(Post(title='Second Post', content='Content of second post'))
+    db.session.commit()
+

@@ -1,6 +1,6 @@
-from . import Post
 from flask import render_template, request, url_for, flash, redirect, Blueprint
-from .models import db
+from .extensions import db
+from .models import Post
 
 bp = Blueprint('posts', __name__)
 
