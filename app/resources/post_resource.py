@@ -4,6 +4,7 @@ from app.marshalling import PostRequestParser, PostSchema
 from app.extensions import db
 from app.models import Post
 
+
 class PostResource:
     def put(self, post_id):
         post = Post.query.get(post_id)
