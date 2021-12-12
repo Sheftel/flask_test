@@ -1,11 +1,11 @@
-from flask_restful import marshal
+from flask_restful import marshal, Resource
 
 from app.marshalling import PostRequestParser, PostSchema
 from app.extensions import db
 from app.models import Post
 
 
-class PostResource:
+class PostResource(Resource):
     def put(self, post_id):
         post = Post.query.get(post_id)
         if post is None:
@@ -25,6 +25,7 @@ class PostResource:
             return {"message": "Post not found"}, 404
 
         return marshal(post, PostSchema)
+
     def delete(self, post_id):
         post = Post.query.get(post_id)
         if post is None:

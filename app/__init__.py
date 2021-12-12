@@ -1,6 +1,7 @@
 import config
 from flask import Flask
 from . import views
+from .config_routes import init_routes
 from .extensions import db, migrate
 
 
@@ -9,6 +10,7 @@ def create_app():
     app.config.from_object(config.DevelopmentConfig())
     register_extensions(app)
     register_blueprints(app)
+    init_routes(app)
     with app.app_context():
         db.create_all()
     return app
@@ -23,3 +25,5 @@ def register_extensions(app):
 def register_blueprints(app):
     app.register_blueprint(views.bp)
     return None
+
+

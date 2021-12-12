@@ -1,8 +1,6 @@
 from flask_restful import fields
 from flask_restful.reqparse import RequestParser
 
-from extensions import db
-from models import Post
 
 PostSchema = {
     'id': fields.Integer(default=None),
